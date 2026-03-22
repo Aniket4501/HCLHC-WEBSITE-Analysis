@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engagement Module — Website Repositioning Strategy</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0F4C81;
+            --primary-light: #1a6bb5;
+            --primary-dark: #0a3459;
+            --secondary: #00A878;
+            --secondary-light: #00c98e;
+            --accent-amber: #E8913A;
+            --accent-rose: #D94F6B;
+            --accent-violet: #6C5CE7;
+            --bg-primary: #ffffff;
+            --bg-warm: #FAFAF8;
+            --bg-cool: #F4F7FA;
+            --bg-dark: #0f1923;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --border: #e2e8f0;
+            --border-light: #edf2f7;
+        }
+
+        @page { size: A4; margin: 18mm 15mm; }
+        @media print {
+            body { font-size: 10pt; }
+            .page-break { page-break-before: always; }
+            nav, .no-print { display: none; }
+            section { page-break-inside: avoid; }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        [contenteditable="true"]:hover {
+            outline: 2px dashed rgba(15, 76, 129, 0.2);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        [contenteditable="true"]:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+
+        /* ─── Header ─── */
+        header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+            padding: 72px 0 64px;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -80px; right: -80px;
+            width: 400px; height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,168,120,0.15), transparent 70%);
+            pointer-events: none;
+        }
+
+        .header-badge {
+            display: inline-block;
+            padding: 6px 18px;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        header h1 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 46px;
+            font-weight: 400;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            max-width: 720px;
+        }
+
+        header .subtitle {
+            font-size: 19px;
+            opacity: 1;
+            max-width: 680px;
+            line-height: 1.65;
+            font-weight: 400;
+            color: rgba(255,255,255,0.95);
+        }
+
+        .header-meta {
+            display: flex;
+            gap: 32px;
+            margin-top: 36px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        .header-meta span strong { opacity: 1; }
+
+        /* ─── Navigation ─── */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 14px 0;
+        }
+
+        nav .container {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+        }
+
+        nav a {
+            padding: 8px 16px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 6px;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        nav a:hover { background: var(--bg-cool); color: var(--primary); }
+
+        /* ─── Sections ─── */
+        section { padding: 56px 0; border-bottom: 1px solid var(--border-light); }
+        section:last-child { border-bottom: none; }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 32px;
+            font-weight: 400;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            line-height: 1.25;
+        }
+
+        .section-intro {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-bottom: 36px;
+            line-height: 1.7;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 36px 0 16px;
+        }
+
+        h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        p { margin-bottom: 14px; color: var(--text-secondary); }
+
+        /* ─── Cards ─── */
+        .card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 28px;
+            margin-bottom: 16px;
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover { box-shadow: 0 4px 24px rgba(15,76,129,0.06); }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 16px 0;
+        }
+
+        .card-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 16px 0;
+        }
+
+        /* ─── Accent Cards ─── */
+        .accent-card {
+            border-left: 4px solid;
+            padding: 24px 24px 24px 28px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 16px;
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-light);
+            border-right: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .accent-card.primary { border-left-color: var(--primary); }
+        .accent-card.secondary { border-left-color: var(--secondary); }
+        .accent-card.amber { border-left-color: var(--accent-amber); }
+        .accent-card.rose { border-left-color: var(--accent-rose); }
+        .accent-card.violet { border-left-color: var(--accent-violet); }
+
+        /* ─── Strategy Box ─── */
+        .strategy-box {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            border-radius: 12px;
+            padding: 36px;
+            margin: 24px 0;
+        }
+
+        .strategy-box h3 { color: rgba(255,255,255,0.6); margin-top: 0; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; }
+        .strategy-box p { color: rgba(255,255,255,0.92); font-size: 17px; line-height: 1.75; margin-bottom: 0; }
+
+        /* ─── Headline Options ─── */
+        .headline-option {
+            background: var(--bg-warm);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 28px;
+            margin-bottom: 14px;
+            position: relative;
+        }
+
+        .headline-option .option-tag {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 4px;
+            background: rgba(15,76,129,0.08);
+            color: var(--primary);
+        }
+
+        .headline-option .headline {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 26px;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .headline-option .subheadline {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ─── Journey Flow ─── */
+        .journey-flow {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            margin: 24px 0;
+            position: relative;
+        }
+
+        .journey-step {
+            text-align: center;
+            padding: 28px 20px;
+            position: relative;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+        }
+
+        .journey-step:first-child { border-radius: 10px 0 0 10px; }
+        .journey-step:last-child { border-radius: 0 10px 10px 0; }
+        .journey-step:not(:last-child) { border-right: none; }
+
+        .journey-step .step-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px;
+            font-size: 22px;
+        }
+
+        .journey-step:nth-child(1) .step-icon { background: rgba(15,76,129,0.1); }
+        .journey-step:nth-child(2) .step-icon { background: rgba(0,168,120,0.1); }
+        .journey-step:nth-child(3) .step-icon { background: rgba(108,92,231,0.1); }
+        .journey-step:nth-child(4) .step-icon { background: rgba(232,145,58,0.1); }
+
+        .journey-step .step-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+
+        .journey-step .step-desc {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+        .journey-step:not(:last-child)::after {
+            content: '→';
+            position: absolute;
+            right: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: var(--text-muted);
+            z-index: 2;
+            background: var(--bg-primary);
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+        }
+
+        /* ─── Comparison Table ─── */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        .comparison-table th {
+            background: var(--bg-cool);
+            padding: 14px 18px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            border-bottom: 2px solid var(--border);
+        }
+
+        .comparison-table td {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            vertical-align: top;
+        }
+
+        .comparison-table tr:hover td { background: var(--bg-warm); }
+
+        .check { color: var(--secondary); font-weight: 700; }
+        .cross { color: var(--accent-rose); }
+        .partial { color: var(--accent-amber); }
+
+        /* ─── Priority Tags ─── */
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .tag-quick { background: #d1fae5; color: #047857; }
+        .tag-strategic { background: #dbeafe; color: #1e40af; }
+        .tag-critical { background: #fee2e2; color: #991b1b; }
+
+        /* ─── Feature → Value ─── */
+        .value-transform {
+            display: grid;
+            grid-template-columns: 1fr 40px 1fr;
+            align-items: center;
+            gap: 0;
+            margin: 12px 0;
+            padding: 16px 20px;
+            background: var(--bg-warm);
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+        }
+
+        .value-transform .feature-text {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            text-decoration-color: rgba(0,0,0,0.2);
+        }
+
+        .value-transform .arrow {
+            text-align: center;
+            font-size: 18px;
+            color: var(--secondary);
+        }
+
+        .value-transform .value-text {
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* ─── Callout ─── */
+        .callout {
+            padding: 20px 24px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid;
+        }
+
+        .callout.insight {
+            background: #eff6ff;
+            border-color: var(--primary);
+        }
+
+        .callout.action {
+            background: #ecfdf5;
+            border-color: var(--secondary);
+        }
+
+        .callout.warning {
+            background: #fffbeb;
+            border-color: var(--accent-amber);
+        }
+
+        .callout-title {
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .callout.insight .callout-title { color: var(--primary); }
+        .callout.action .callout-title { color: var(--secondary); }
+        .callout.warning .callout-title { color: var(--accent-amber); }
+
+        .callout p { margin-bottom: 0; font-size: 14px; }
+
+        /* ─── Implementation Grid ─── */
+        .impl-item {
+            display: grid;
+            grid-template-columns: 100px 1fr auto;
+            align-items: start;
+            gap: 16px;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .impl-item:last-child { border-bottom: none; }
+
+        .impl-effort {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding-top: 2px;
+        }
+
+        .impl-effort.quick { color: var(--secondary); }
+        .impl-effort.medium { color: var(--accent-amber); }
+        .impl-effort.major { color: var(--accent-rose); }
+
+        /* ─── Use Case Cards ─── */
+        .use-case {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .use-case::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+
+        .use-case.hr::before { background: var(--primary); }
+        .use-case.employee::before { background: var(--secondary); }
+        .use-case.org::before { background: var(--accent-violet); }
+
+        .use-case .uc-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .use-case.hr .uc-label { color: var(--primary); }
+        .use-case.employee .uc-label { color: var(--secondary); }
+        .use-case.org .uc-label { color: var(--accent-violet); }
+
+        .use-case .uc-title {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .use-case ul {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0 0;
+        }
+
+        .use-case li {
+            padding: 4px 0 4px 20px;
+            position: relative;
+            font-size: 13.5px;
+            color: var(--text-secondary);
+        }
+
+        .use-case li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+        }
+
+        /* ─── Sitemap Block ─── */
+        .sitemap {
+            background: var(--bg-cool);
+            border-radius: 10px;
+            padding: 32px;
+            margin: 20px 0;
+            font-family: 'DM Sans', monospace;
+        }
+
+        .sitemap-item {
+            padding: 8px 0;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .sitemap-item.level-0 { font-weight: 700; color: var(--primary-dark); font-size: 15px; }
+        .sitemap-item.level-1 { padding-left: 28px; }
+        .sitemap-item.level-2 { padding-left: 56px; font-size: 13px; color: var(--text-muted); }
+        .sitemap-item .path { color: var(--secondary); font-weight: 500; margin-left: 8px; font-size: 12px; }
+        .sitemap-item .new-badge {
+            display: inline-block;
+            padding: 1px 6px;
+            background: var(--secondary);
+            color: white;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 3px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        /* ─── Visual Recs ─── */
+        .visual-rec {
+            display: flex;
+            gap: 20px;
+            align-items: start;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .visual-rec:last-child { border-bottom: none; }
+
+        .visual-rec .v-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .visual-rec .v-content { flex: 1; }
+        .visual-rec .v-title { font-weight: 600; margin-bottom: 4px; color: var(--text-primary); font-size: 14px; }
+        .visual-rec .v-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 768px) {
+            header h1 { font-size: 30px; }
+            .card-grid, .card-grid-3 { grid-template-columns: 1fr; }
+            .journey-flow { grid-template-columns: 1fr; }
+            .journey-step { border-radius: 10px !important; border: 1px solid var(--border) !important; margin-bottom: 8px; }
+            .journey-step::after { display: none !important; }
+            .value-transform { grid-template-columns: 1fr; }
+            .impl-item { grid-template-columns: 1fr; }
+            .comparison-table { font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ HEADER ═══ -->
+    <header>
+        <div class="container">
+            <div class="header-badge">Strategy Document</div>
+            <h1 contenteditable="true">Engagement Module<br>Website Repositioning Strategy</h1>
+            <p class="subtitle" contenteditable="true">From invisible feature to core value driver — a practical roadmap to position Engagement as Habit Health's primary competitive differentiator on the web.</p>
+        </div>
+    </header>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="no-print">
+        <div class="container">
+            <a href="#strategy">Overall Strategy</a>
+            <a href="#structure">Website Structure</a>
+            <a href="#messaging">Messaging</a>
+            <a href="#framework">Content Framework</a>
+            <a href="#differentiation">Differentiation</a>
+            <a href="#visuals">Visual & UX</a>
+            <a href="#implementation">Implementation</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+
+            <!-- ═══ SECTION 1: OVERALL STRATEGY ═══ -->
+            <section id="strategy">
+                <div class="section-label">Section 01</div>
+                <h2 contenteditable="true">Overall Strategy</h2>
+                <p class="section-intro" contenteditable="true">The strategic direction that underpins every recommendation in this document.</p>
+
+                <div class="strategy-box">
+                    <h3>Strategic Thesis</h3>
+                    <p contenteditable="true">Engagement must be elevated from a buried feature fragment to the central narrative of Habit Health's website. The repositioning flips the current hierarchy — from "health checks company that also has an app" to "engagement-first platform that drives measurable behavior change at scale." Every change targets one outcome: when an HR buyer evaluates Habit Health, Engagement is the first thing they see, understand, and remember — supported by proof, not promises.</p>
+                </div>
+
+                <div class="card-grid">
+                    <div class="accent-card primary">
+                        <h4>Core Problem</h4>
+                        <p contenteditable="true">Engagement is invisible. It has no dedicated page, no navigation entry, no standalone messaging. An HR buyer would leave the site believing HCL Healthcare is a health-checks and clinics company. The most differentiated features (SPL, peer challenges, reward economy) exist only as barely legible text in small app mockups.</p>
+                    </div>
+                    <div class="accent-card secondary">
+                        <h4>Strategic Outcome</h4>
+                        <p contenteditable="true">A buyer exploring the site should reach the Engagement narrative within two clicks and understand in under 30 seconds: what it is, why it's different, and what outcomes it drives. The page should generate demo requests on its own, without a sales conversation.</p>
+                    </div>
+                </div>
+
+                <div class="callout insight">
+                    <div class="callout-title">Key Insight</div>
+                    <p contenteditable="true">The corporate wellness market has shifted. HR buyers don't buy "features" — they buy participation rates, culture signals, and retention leverage. Every competitor page leads with outcomes. Habit Health currently leads with capabilities — and buries the best ones.</p>
+                </div>
+            </section>
+
+            <div class="page-break"></div>
+
+            <!-- ═══ SECTION 2: WEBSITE STRUCTURE ═══ -->
+            <section id="structure">
+                <div class="section-label">Section 02</div>
+                <h2 contenteditable="true">Recommended Website Structure</h2>
+                <p class="section-intro" contenteditable="true">How Engagement should be surfaced in navigation, information architecture, and page hierarchy.</p>
+
+                <h3>Navigation Overhaul</h3>
+                <p contenteditable="true">Engagement needs first-class citizenship in the primary navigation. The current "For Business" dropdown buries it entirely. The recommended restructure introduces a dedicated Engagement page and restructures the nav to match how HR buyers think — by outcome, not by service category.</p>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <h4 style="color: var(--accent-rose);">Current Navigation</h4>
+                        <div class="sitemap">
+                            <div class="sitemap-item level-0">For Business</div>
+                            <div class="sitemap-item level-1">Our Solutions <span style="color:var(--accent-rose);font-size:11px;">⚠ broken</span></div>
+                            <div class="sitemap-item level-1">Habit Health</div>
+                            <div class="sitemap-item level-1">Onsite Health Centers</div>
+                            <div class="sitemap-item level-1">Annual Health Checks</div>
+                            <div class="sitemap-item level-1">Wellness Offerings</div>
+                        </div>
+                        <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">Engagement is completely absent from navigation. "Our Solutions" page is broken.</p>
+                    </div>
+                    <div class="card">
+                        <h4 style="color: var(--secondary);">Proposed Navigation</h4>
+                        <div class="sitemap">
+                            <div class="sitemap-item level-0">Platform</div>
+                            <div class="sitemap-item level-1">Engagement <span class="new-badge">New</span> <span class="path">/engagement</span></div>
+                            <div class="sitemap-item level-1">Habit Health App <span class="path">/habit-health</span></div>
+                            <div class="sitemap-item level-1">Clinical & Preventive <span class="path">/clinical</span></div>
+                            <div class="sitemap-item level-0" style="margin-top:12px;">Solutions</div>
+                            <div class="sitemap-item level-1">For HR Leaders <span class="new-badge">New</span></div>
+                            <div class="sitemap-item level-1">For Employees</div>
+                        </div>
+                        <p style="font-size:12px;color:var(--secondary);margin-top:8px;">Engagement becomes the first item under Platform — matching buyer priority.</p>
+                    </div>
+                </div>
+
+                <h3>Dedicated Engagement Page — Section Breakdown</h3>
+                <p contenteditable="true">The new <code>/engagement</code> page should follow a narrative arc — from outcome hook to feature depth to proof. Each section has a specific job in the buyer's decision journey.</p>
+
+                <div class="accent-card primary">
+                    <h4>Section 1 — Hero (Above the Fold)</h4>
+                    <p contenteditable="true"><strong>Job:</strong> Capture attention and establish the value proposition in 5 seconds.<br>
+                    <strong>Content:</strong> Outcome-driven headline, 1-line subhead, single hero visual (animated dashboard or product screenshot showing live engagement), one primary CTA ("Book a Demo") and one secondary CTA ("See How It Works").<br>
+                    <strong>Critical:</strong> No feature language above the fold. Lead with the business problem or outcome.</p>
+                </div>
+
+                <div class="accent-card secondary">
+                    <h4>Section 2 — The Engagement Journey (Visual Flow)</h4>
+                    <p contenteditable="true"><strong>Job:</strong> Show the complete engagement system as a coherent loop, not isolated features.<br>
+                    <strong>Content:</strong> 4-step visual framework — Track → Compete → Learn → Earn — with brief descriptions and product screenshots for each stage. This becomes the organizing principle for the entire page.<br>
+                    <strong>Critical:</strong> Must feel like a system, not a list. Arrows or flow lines connecting stages.</p>
+                </div>
+
+                <div class="accent-card amber">
+                    <h4>Section 3 — Feature Deep-Dives (Tabbed or Scrollable)</h4>
+                    <p contenteditable="true"><strong>Job:</strong> Give depth to each engagement pillar for buyers who want detail.<br>
+                    <strong>Content:</strong> Four panels or tabs — Activity Tracking & Streaks, Challenges (Individual + SPL + CUG), Content & Webinars, Rewards & Incentives. Each with a product visual, 3–4 benefit bullets, and one metric or proof point.<br>
+                    <strong>Critical:</strong> Name the unique features. "Steps Premier League" and "Peer Challenges" must appear as named concepts with explanations — not buried in screenshots.</p>
+                </div>
+
+                <div class="accent-card violet">
+                    <h4>Section 4 — Outcomes & Social Proof</h4>
+                    <p contenteditable="true"><strong>Job:</strong> Convert interest into confidence with evidence.<br>
+                    <strong>Content:</strong> 2–3 outcome metrics (participation rates, engagement lift, completion %), 1–2 client quotes specifically about engagement, one mini case study (client name, challenge, result).<br>
+                    <strong>Critical:</strong> If hard metrics aren't available yet, use directional stats from HCLT pilots. Even "8,000+ employees participated in SPL Season 1" is powerful.</p>
+                </div>
+
+                <div class="accent-card rose">
+                    <h4>Section 5 — For HR Leaders (Role-Based Value)</h4>
+                    <p contenteditable="true"><strong>Job:</strong> Speak directly to the buyer persona.<br>
+                    <strong>Content:</strong> Two-column layout — left column: "What HR Gets" (dashboard screenshots, campaign setup, analytics), right column: "What Employees Experience" (app screenshots, leaderboards, rewards). Addresses both decision-maker and end-user.<br>
+                    <strong>Critical:</strong> Show the admin experience. HR buyers need to see that setup is easy, not just that the employee experience is gamified.</p>
+                </div>
+
+                <div class="accent-card primary">
+                    <h4>Section 6 — CTA + Integration Context</h4>
+                    <p contenteditable="true"><strong>Job:</strong> Close the page with a strong action prompt.<br>
+                    <strong>Content:</strong> Final CTA block ("See Engagement in Action — Book a Demo"), integration logos (Google Fit, Apple Health, wearables), brief mention of enterprise features (SSO, CUG-based configuration, multi-campus support).</p>
+                </div>
+
+                <h3>Homepage Changes</h3>
+                <p contenteditable="true">The homepage requires three targeted changes. First, replace the default carousel slide — the app carousel should open on the Engagement screen (Steps Premier League or Active Zone), not Employee Health Benefits. Second, add an Engagement-specific section above the fold or immediately after the hero, with a headline, 1-line description, and "Learn More" link to /engagement. Third, update the "Holistic Wellbeing Solutions" circle to prominently feature "Employee Engagement" as a clickable path to the dedicated page.</p>
+            </section>
+
+            <div class="page-break"></div>
+
+            <!-- ═══ SECTION 3: MESSAGING ═══ -->
+            <section id="messaging">
+                <div class="section-label">Section 03</div>
+                <h2 contenteditable="true">Messaging & Positioning</h2>
+                <p class="section-intro" contenteditable="true">Rewritten messaging that shifts from feature-descriptive to outcome-driven, targeting HR decision-makers who buy results, not capabilities.</p>
+
+                <h3>Headline + Subheadline Options</h3>
+
+                <div class="headline-option">
+                    <span class="option-tag">Recommended</span>
+                    <div class="headline" contenteditable="true">Turn Wellness Programs Into Movements Your Employees Actually Join</div>
+                    <div class="subheadline" contenteditable="true">Habit Health's Engagement Engine combines step tracking, team challenges, and smart incentives to drive 3× the participation of traditional wellness programs — without HR doing more work.</div>
+                </div>
+
+                <div class="headline-option">
+                    <span class="option-tag">Alternative A</span>
+                    <div class="headline" contenteditable="true">The Engagement Platform That Makes Health Competitive, Social, and Rewarding</div>
+                    <div class="subheadline" contenteditable="true">From daily step streaks to organization-wide leagues, Habit Health turns individual wellness into collective momentum — driving sustained behavior change across your workforce.</div>
+                </div>
+
+                <div class="headline-option">
+                    <span class="option-tag">Alternative B</span>
+                    <div class="headline" contenteditable="true">Your Employees Don't Need Another Wellness App. They Need a Reason to Open It.</div>
+                    <div class="subheadline" contenteditable="true">Habit Health's Engagement Engine gives them that reason — with team competitions, peer challenges, live content, and rewards that keep people coming back, not just signing up.</div>
+                </div>
+
+                <div class="headline-option">
+                    <span class="option-tag">Alternative C — Data-Led</span>
+                    <div class="headline" contenteditable="true">From 20% Participation to 70%+ Sustained Engagement</div>
+                    <div class="subheadline" contenteditable="true">Most corporate wellness programs see adoption drop by month two. Habit Health's gamified engagement system is built to keep employees active — with challenges, streaks, and rewards that sustain behavior change at scale.</div>
+                </div>
+
+                <h3>Feature → Value Rewrites</h3>
+                <p contenteditable="true">Every feature on the current site is described in product language. Below is a transformation of each into the language HR buyers respond to.</p>
+
+                <div class="value-transform">
+                    <span class="feature-text">Monthly challenges for steps, hydration, posture, and planks</span>
+                    <span class="arrow">→</span>
+                    <span class="value-text" contenteditable="true">Launch org-wide wellness campaigns in minutes — and watch participation climb week over week</span>
+                </div>
+
+                <div class="value-transform">
+                    <span class="feature-text">Gamified milestones & digital badges to sustain motivation</span>
+                    <span class="arrow">→</span>
+                    <span class="value-text" contenteditable="true">Built-in streak mechanics and milestone rewards that turn one-time participants into daily active users</span>
+                </div>
+
+                <div class="value-transform">
+                    <span class="feature-text">Gamification, nudges, and social features boost participation</span>
+                    <span class="arrow">→</span>
+                    <span class="value-text" contenteditable="true">A behavioral engagement system — combining team competition, peer accountability, and smart incentives — designed to make healthy habits stick across entire organizations</span>
+                </div>
+
+                <div class="value-transform">
+                    <span class="feature-text">Habit App integration for live tracking, leaderboards, and rewards</span>
+                    <span class="arrow">→</span>
+                    <span class="value-text" contenteditable="true">Real-time leaderboards that create organic cross-department competition — with tangible rewards that make winning meaningful</span>
+                </div>
+
+                <div class="value-transform">
+                    <span class="feature-text">Curated knowledge library</span>
+                    <span class="arrow">→</span>
+                    <span class="value-text" contenteditable="true">Expert-led webinars, articles, and video content that educate employees while boosting platform engagement</span>
+                </div>
+
+                <div class="value-transform">
+                    <span class="feature-text">Steps Premier League (app screenshot only)</span>
+                    <span class="arrow">→</span>
+                    <span class="value-text" contenteditable="true">Steps Premier League — an IPL-style corporate step competition where employee teams compete in cricket-themed battles, complete with captains, match days, and live commentary</span>
+                </div>
+
+                <div class="callout action">
+                    <div class="callout-title">Messaging Principle</div>
+                    <p contenteditable="true">Every sentence on the Engagement page should pass the "So What?" test. If an HR leader reads it and thinks "okay, but what does that do for my organization?" — the copy has failed. Tie every feature to participation rates, employee experience, retention, culture, or cost savings.</p>
+                </div>
+            </section>
+
+            <div class="page-break"></div>
+
+            <!-- ═══ SECTION 4: CONTENT FRAMEWORK ═══ -->
+            <section id="framework">
+                <div class="section-label">Section 04</div>
+                <h2 contenteditable="true">Content Framework</h2>
+                <p class="section-intro" contenteditable="true">Two complementary frameworks for presenting Engagement — one journey-based for the page narrative, one persona-based for use case positioning.</p>
+
+                <h3>Framework A — The Engagement Journey</h3>
+                <p contenteditable="true">This is the primary organizing principle for the /engagement page. It presents the module as a continuous loop, not a feature list. Each stage maps to specific product capabilities and business outcomes.</p>
+
+                <div class="journey-flow">
+                    <div class="journey-step">
+                        <div class="step-icon">👟</div>
+                        <div class="step-title" contenteditable="true">Track</div>
+                        <div class="step-desc" contenteditable="true">Step sync from wearables & phones. Daily activity dashboards. Streaks that build habits over weeks, not days.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-icon">⚔️</div>
+                        <div class="step-title" contenteditable="true">Compete</div>
+                        <div class="step-desc" contenteditable="true">Peer challenges with invites. CUG-wide campaigns. Steps Premier League — team battles with leaderboards and match commentary.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-icon">📚</div>
+                        <div class="step-title" contenteditable="true">Learn</div>
+                        <div class="step-desc" contenteditable="true">Live webinars with Q&A. Expert articles. On-demand wellness videos. Knowledge that reinforces healthy behaviors.</div>
+                    </div>
+                    <div class="journey-step">
+                        <div class="step-icon">🎁</div>
+                        <div class="step-title" contenteditable="true">Earn</div>
+                        <div class="step-desc" contenteditable="true">Milestone rewards. Challenge prizes. Voucher economy with real-world redemption. Habit Coins that make engagement tangible.</div>
+                    </div>
+                </div>
+
+                <div class="callout insight">
+                    <div class="callout-title">Why This Framework Works</div>
+                    <p contenteditable="true">It answers the buyer's implicit question: "What does the employee experience actually look like?" By walking through Track → Compete → Learn → Earn, you show a complete engagement ecosystem — not disconnected features. It also mirrors the actual behavior change model: build awareness (Track), create motivation (Compete), provide knowledge (Learn), reinforce with incentives (Earn).</p>
+                </div>
+
+                <h3>Framework B — Use Case Positioning</h3>
+                <p contenteditable="true">For buyers who think in terms of "who uses this and how?" — present three clear use case lanes.</p>
+
+                <div class="card-grid-3">
+                    <div class="use-case hr">
+                        <div class="uc-label">HR-Driven</div>
+                        <div class="uc-title" contenteditable="true">Campaign Management</div>
+                        <p contenteditable="true" style="font-size:13.5px;">HR admins design, launch, and track organization-wide wellness campaigns from a central dashboard.</p>
+                        <ul>
+                            <li contenteditable="true">CUG challenges with custom goals & durations</li>
+                            <li contenteditable="true">SPL league setup with team allocation</li>
+                            <li contenteditable="true">Content scheduling (webinars, articles, VOD)</li>
+                            <li contenteditable="true">Reward configuration & budget controls</li>
+                            <li contenteditable="true">Real-time participation analytics</li>
+                        </ul>
+                    </div>
+                    <div class="use-case employee">
+                        <div class="uc-label">Employee-Driven</div>
+                        <div class="uc-title" contenteditable="true">Social Wellness</div>
+                        <p contenteditable="true" style="font-size:13.5px;">Employees create their own challenges, invite peers, and build healthy habits through social accountability.</p>
+                        <ul>
+                            <li contenteditable="true">Create personal step challenges</li>
+                            <li contenteditable="true">Invite colleagues to compete</li>
+                            <li contenteditable="true">Track daily streaks & milestones</li>
+                            <li contenteditable="true">Browse and join open challenges</li>
+                            <li contenteditable="true">Earn rewards through consistent participation</li>
+                        </ul>
+                    </div>
+                    <div class="use-case org">
+                        <div class="uc-label">Organization-Wide</div>
+                        <div class="uc-title" contenteditable="true">Culture Events</div>
+                        <p contenteditable="true" style="font-size:13.5px;">Large-scale engagement events that unite entire campuses or business units around shared health goals.</p>
+                        <ul>
+                            <li contenteditable="true">Steps Premier League (cross-team competition)</li>
+                            <li contenteditable="true">Multi-campus challenges with local leaderboards</li>
+                            <li contenteditable="true">Sports facility booking for campus events</li>
+                            <li contenteditable="true">Live wellness webinars at scale</li>
+                            <li contenteditable="true">Organization-wide rewards & recognition</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Content Flow — How the Page Should Read</h3>
+                <div class="card">
+                    <p contenteditable="true" style="margin-bottom:0;">The page narrative should follow this arc: <strong>Hook</strong> (outcome headline — answer "why should I care?") → <strong>System</strong> (Track → Compete → Learn → Earn journey — show the full engagement loop) → <strong>Depth</strong> (feature deep-dives with product visuals — answer "how does it work?") → <strong>Proof</strong> (metrics, testimonials, case study — answer "does it actually work?") → <strong>Relevance</strong> (use case lanes or role-based view — answer "how does it apply to my org?") → <strong>Action</strong> (demo CTA — make the next step obvious).</p>
+                </div>
+            </section>
+
+            <div class="page-break"></div>
+
+            <!-- ═══ SECTION 5: DIFFERENTIATION ═══ -->
+            <section id="differentiation">
+                <div class="section-label">Section 05</div>
+                <h2 contenteditable="true">Differentiation Strategy</h2>
+                <p class="section-intro" contenteditable="true">What makes Habit Health's Engagement genuinely different from Wellable, Virgin Pulse, YuMuuv, and Vantage Fit — and how to communicate it.</p>
+
+                <h3>Unique Differentiators to Highlight</h3>
+                <p contenteditable="true">These features are genuinely uncommon or absent in competitor platforms. They should be named, explained, and positioned prominently — not hidden in app screenshots.</p>
+
+                <div class="card-grid">
+                    <div class="accent-card primary">
+                        <h4>Steps Premier League (SPL)</h4>
+                        <p contenteditable="true">An IPL-style corporate step competition with teams, captains, match days, cricket-themed scoring (Sixers, Boundaries, Outs), and live commentary. No major competitor offers anything like this — it turns step tracking into a spectator sport within the organization. <strong>This is the single most differentiating feature and deserves hero-level treatment.</strong></p>
+                    </div>
+                    <div class="accent-card secondary">
+                        <h4>Employee-Created Peer Challenges</h4>
+                        <p contenteditable="true">Employees can create their own step challenges, set goals, invite specific colleagues, and compete on personal leaderboards. Most competitors offer only admin-led challenges. This bottom-up engagement model creates organic virality and reduces HR overhead.</p>
+                    </div>
+                    <div class="accent-card amber">
+                        <h4>CUG-Based Multi-Tenant Architecture</h4>
+                        <p contenteditable="true">Challenges, content, events, and rewards can be configured per Closed User Group — supporting multi-campus, multi-BU, and multi-client deployments from a single platform. Most competitors require separate instances for different organizational units. For large enterprises, this is a procurement advantage.</p>
+                    </div>
+                    <div class="accent-card violet">
+                        <h4>Integrated Engagement Ecosystem</h4>
+                        <p contenteditable="true">Tracking, challenges, content, webinars, facility bookings, and rewards all live in one platform — not stitched together from acquisitions or integrations. The engagement loop (Track → Compete → Learn → Earn) is native, not assembled. This means faster setup, consistent UX, and unified analytics.</p>
+                    </div>
+                </div>
+
+                <h3>Competitive Positioning Matrix</h3>
+                <p contenteditable="true">This should not appear directly on the website, but the capabilities it highlights should inform page copy and feature emphasis. It can also be used as sales enablement collateral.</p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Capability</th>
+                            <th>Habit Health</th>
+                            <th>Wellable</th>
+                            <th>Vantage Fit</th>
+                            <th>YuMuuv</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Admin-led step challenges</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Employee-created peer challenges</td>
+                            <td class="check">✓</td>
+                            <td class="cross">✗</td>
+                            <td class="partial">Limited</td>
+                            <td class="cross">✗</td>
+                        </tr>
+                        <tr>
+                            <td>Team-based league competition (SPL)</td>
+                            <td class="check">✓ Unique</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                        </tr>
+                        <tr>
+                            <td>Cricket-themed gamification & live commentary</td>
+                            <td class="check">✓ Unique</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                        </tr>
+                        <tr>
+                            <td>CUG-based multi-tenant configuration</td>
+                            <td class="check">✓</td>
+                            <td class="partial">Limited</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                        </tr>
+                        <tr>
+                            <td>Integrated webinars (live + recorded)</td>
+                            <td class="check">✓</td>
+                            <td class="partial">Partial</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                        </tr>
+                        <tr>
+                            <td>Sports facility booking</td>
+                            <td class="check">✓</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                            <td class="cross">✗</td>
+                        </tr>
+                        <tr>
+                            <td>Articles + VOD content hub</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="partial">Limited</td>
+                            <td class="cross">✗</td>
+                        </tr>
+                        <tr>
+                            <td>Voucher & reward economy</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="check">✓</td>
+                            <td class="partial">Basic</td>
+                        </tr>
+                        <tr>
+                            <td>Step streaks & habit formation mechanics</td>
+                            <td class="check">✓</td>
+                            <td class="cross">✗</td>
+                            <td class="partial">Basic</td>
+                            <td class="cross">✗</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="callout warning">
+                    <div class="callout-title">Competitive Messaging Guidance</div>
+                    <p contenteditable="true">Don't name competitors on the website. Instead, use contrast language: "Unlike traditional wellness platforms that offer only admin-led challenges…" or "Most wellness apps stop at tracking. Habit Health starts there." The differentiation should be felt through specificity and naming of unique features (SPL, Peer Challenges) — not through competitor-bashing.</p>
+                </div>
+
+                <h3>Recommended "Only We Do This" Callouts for the Page</h3>
+                <div class="card-grid-3">
+                    <div class="card" style="text-align:center;">
+                        <div style="font-size:28px;margin-bottom:8px;">🏏</div>
+                        <h4 contenteditable="true">Steps Premier League</h4>
+                        <p contenteditable="true" style="font-size:13px;">The only corporate wellness platform with a full cricket-themed team league — complete with captains, match days, and live commentary.</p>
+                    </div>
+                    <div class="card" style="text-align:center;">
+                        <div style="font-size:28px;margin-bottom:8px;">🤝</div>
+                        <h4 contenteditable="true">Peer-Created Challenges</h4>
+                        <p contenteditable="true" style="font-size:13px;">Employees don't wait for HR. They create their own challenges, invite friends, and compete — creating organic engagement from the ground up.</p>
+                    </div>
+                    <div class="card" style="text-align:center;">
+                        <div style="font-size:28px;margin-bottom:8px;">🏢</div>
+                        <h4 contenteditable="true">Enterprise Multi-Tenancy</h4>
+                        <p contenteditable="true" style="font-size:13px;">Configure challenges, content, and rewards differently for each campus, BU, or client group — all from a single platform.</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="page-break"></div>
+
+            <!-- ═══ SECTION 6: VISUAL & UX ═══ -->
+            <section id="visuals">
+                <div class="section-label">Section 06</div>
+                <h2 contenteditable="true">Visual & UX Recommendations</h2>
+                <p class="section-intro" contenteditable="true">What to show, how to show it, and what types of visual content will make Engagement tangible for buyers who can't do a live demo yet.</p>
+
+                <div class="visual-rec">
+                    <div class="v-icon" style="background:rgba(15,76,129,0.08);">📱</div>
+                    <div class="v-content">
+                        <div class="v-title" contenteditable="true">Full-Screen Product Screenshots (Not Thumbnails)</div>
+                        <div class="v-desc" contenteditable="true">Replace the current tiny carousel mockups with large, legible app screenshots. Each feature section should have a hero-sized product visual that a buyer can understand without zooming. Show the SPL leaderboard, a live challenge with progress bars, the streak calendar, and the rewards screen at a size where the data is readable.</div>
+                    </div>
+                </div>
+
+                <div class="visual-rec">
+                    <div class="v-icon" style="background:rgba(0,168,120,0.08);">🎬</div>
+                    <div class="v-content">
+                        <div class="v-title" contenteditable="true">60-Second Engagement Product Video</div>
+                        <div class="v-desc" contenteditable="true">Create a short, narrated screen recording that walks through the engagement journey: opening the app, seeing the step dashboard, joining a challenge, checking the leaderboard, winning a reward. This single asset has more conversion power than 2,000 words of copy. Place it in the hero section with a "Watch How It Works" CTA. Auto-muted, with captions.</div>
+                    </div>
+                </div>
+
+                <div class="visual-rec">
+                    <div class="v-icon" style="background:rgba(108,92,231,0.08);">📊</div>
+                    <div class="v-content">
+                        <div class="v-title" contenteditable="true">Admin Dashboard Preview</div>
+                        <div class="v-desc" contenteditable="true">HR buyers need to see the administrative experience — not just the employee app. Show a screenshot or animated mockup of the admin dashboard: creating a challenge, viewing participation analytics, managing reward budgets. This addresses the unspoken buyer question: "Will this create more work for my team?"</div>
+                    </div>
+                </div>
+
+                <div class="visual-rec">
+                    <div class="v-icon" style="background:rgba(232,145,58,0.08);">🔄</div>
+                    <div class="v-content">
+                        <div class="v-title" contenteditable="true">Animated Engagement Journey Flow</div>
+                        <div class="v-desc" contenteditable="true">The Track → Compete → Learn → Earn framework should be visualized as an animated loop or interactive scroll-triggered diagram. As the user scrolls, each stage lights up with product screenshots and key stats. This replaces the static feature cards with something that communicates "system" rather than "list."</div>
+                    </div>
+                </div>
+
+                <div class="visual-rec">
+                    <div class="v-icon" style="background:rgba(217,79,107,0.08);">📈</div>
+                    <div class="v-content">
+                        <div class="v-title" contenteditable="true">Outcome Metrics — Large Format</div>
+                        <div class="v-desc" contenteditable="true">Display engagement outcomes as large, bold stat blocks — e.g., "8,000+ SPL Participants", "3× Engagement vs. Industry Average", "85% Challenge Completion Rate." Use real numbers from HCLT deployments where available. These should be visually prominent (large font, colored backgrounds) and placed near the top of the page, not buried at the bottom.</div>
+                    </div>
+                </div>
+
+                <div class="visual-rec">
+                    <div class="v-icon" style="background:rgba(15,76,129,0.08);">💬</div>
+                    <div class="v-content">
+                        <div class="v-title" contenteditable="true">Engagement-Specific Testimonials</div>
+                        <div class="v-desc" contenteditable="true">The current testimonials section has zero mentions of engagement. Source 2–3 quotes specifically about challenges, SPL, or participation outcomes. Even internal quotes from HCLT HR leadership or pilot champions count. Place them adjacent to feature sections — a testimonial about SPL next to the SPL feature description, not in a generic carousel at the bottom.</div>
+                    </div>
+                </div>
+
+                <div class="callout action">
+                    <div class="callout-title">UX Principle</div>
+                    <p contenteditable="true">The page should be scannable in 15 seconds and readable in 2 minutes. A buyer should be able to scroll through and understand what Engagement does, how it's different, and whether it's credible — without reading a single paragraph. Visuals, stats, and feature names do the heavy lifting. Body copy provides depth for those who want it.</p>
+                </div>
+            </section>
+
+            <div class="page-break"></div>
+
+            <!-- ═══ SECTION 7: IMPLEMENTATION ═══ -->
+            <section id="implementation">
+                <div class="section-label">Section 07</div>
+                <h2 contenteditable="true">Quick Wins vs Strategic Changes</h2>
+                <p class="section-intro" contenteditable="true">A prioritized implementation plan separated by effort level, so the team can ship immediate improvements while planning the larger overhaul.</p>
+
+                <h3>Quick Wins — Can Ship This Week</h3>
+                <p contenteditable="true">These require no new pages, no design work, and no content creation. They're copy changes and reordering.</p>
+
+                <div class="impl-item">
+                    <span class="impl-effort quick">Quick Win</span>
+                    <div>
+                        <strong>Fix the broken "Our Solutions" page</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin:4px 0 0;">The primary buyer discovery path is completely dead. This is a technical bug with high credibility impact — fix it before anything else.</p>
+                    </div>
+                    <span class="tag tag-critical">Critical</span>
+                </div>
+
+                <div class="impl-item">
+                    <span class="impl-effort quick">Quick Win</span>
+                    <div>
+                        <strong>Change the homepage carousel default to Engagement</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin:4px 0 0;">Set the app carousel's default slide to the Steps Premier League or Active Zone screen. Currently defaults to "Employee Health Benefits" and "Tele Consultation."</p>
+                    </div>
+                    <span class="tag tag-quick">1 Hour</span>
+                </div>
+
+                <div class="impl-item">
+                    <span class="impl-effort quick">Quick Win</span>
+                    <div>
+                        <strong>Rewrite the "Engagement engine" card on Habit Health page</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin:4px 0 0;">Replace "Gamification, nudges, and social features boost participation" (12 words) with outcome-driven copy: "Challenges, leagues, streaks, and rewards that drive 70%+ sustained participation — turning wellness programs into organizational movements."</p>
+                    </div>
+                    <span class="tag tag-quick">30 Min</span>
+                </div>
+
+                <div class="impl-item">
+                    <span class="impl-effort quick">Quick Win</span>
+                    <div>
+                        <strong>Move "Gamified wellness" section to top of Wellness Offerings page</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin:4px 0 0;">Currently the last section. Move it to position 1 or 2 — above Clinical Support and Knowledge Sessions. The information hierarchy should signal priority.</p>
+                    </div>
+                    <span class="tag tag-quick">30 Min</span>
+                </div>
+
+                <div class="impl-item">
+                    <span class="impl-effort quick">Quick Win</span>
+                    <div>
+                        <strong>Add feature names to app screenshot captions</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin:4px 0 0;">Where app mockups show SPL, challenges, or rewards — add visible text labels below: "Steps Premier League — team-based corporate step competition" instead of relying on the buyer to read tiny in-app text.</p>
+                    </div>
+                    <span class="tag tag-quick">1 Hour</span>
+                </div>
+
+                <h3>Medium-Term — 2 to 4 Weeks</h3>
+
+                <div class="impl-item">
+                    <span class="impl-effort medium">Medium</span>
+                    <div>
+                        <strong>Create dedicated /engagement page</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin:4px 0 0;">Follow the 6-section structure defined above. Requires copywriting, product screenshots, and basic page design. Can reuse existing page templates with new content.</p>
+                    </div>
+                    <span class="tag tag-strategic">Design + Content</span>
+                </div>
+
+                <div class="impl-item">
+                    <span class="impl-effort medium">Medium</span>
+                    <div>
+                        <strong>Add "Engagement" to primary navigation</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin:4px 0 0;">Once the /engagement page exists, add it to the nav under "Platform" as the first item. Consider renaming "Wellness Offerings" to "Clinical & Preventive" to reduce confusion.</p>
+                    </div>
+                    <span class="tag tag-strategic">Nav Update</span>
+                </div>
+
+                <div class="impl-item">
+                    <span class="impl-effort medium">Medium</span>
+                    <div>
+                        <strong>Source engagement-specific testimonials</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin:4px 0 0;">Request 2–3 quotes from HCLT HR contacts specifically about engagement, challenges, or SPL participation. Even informal quotes work if attributed.</p>
+                    </div>
+                    <span class="tag tag-strategic">Content</span>
+                </div>
+
+                <div class="impl-item">
+                    <span class="impl-effort medium">Medium</span>
+                    <div>
+                        <strong>Capture high-resolution product screenshots</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin:4px 0 0;">Full-screen captures of SPL leaderboard, challenge progress, streak calendar, admin dashboard, rewards screen. Framed in device mockups for the new page.</p>
+                    </div>
+                    <span class="tag tag-strategic">Design</span>
+                </div>
+
+                <h3>Strategic — 1 to 3 Months</h3>
+
+                <div class="impl-item">
+                    <span class="impl-effort major">Strategic</span>
+                    <div>
+                        <strong>Produce a 60-second product demo video</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin:4px 0 0;">Screen recording with voiceover walking through the engagement journey. Place in hero section. This is the single highest-ROI content asset for the page.</p>
+                    </div>
+                    <span class="tag tag-strategic">Production</span>
+                </div>
+
+                <div class="impl-item">
+                    <span class="impl-effort major">Strategic</span>
+                    <div>
+                        <strong>Build an engagement-focused case study</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin:4px 0 0;">Partner with HCLT to create a structured case study: client profile, challenge, solution, outcomes (with metrics). Format as both a downloadable PDF and an embedded web summary on the /engagement page.</p>
+                    </div>
+                    <span class="tag tag-strategic">Content + Client</span>
+                </div>
+
+                <div class="impl-item">
+                    <span class="impl-effort major">Strategic</span>
+                    <div>
+                        <strong>Interactive product tour or animated walkthrough</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin:4px 0 0;">Build an embedded interactive demo (Tourial, Navattic, or custom) that lets buyers click through the engagement experience without scheduling a call. High conversion impact for inbound leads.</p>
+                    </div>
+                    <span class="tag tag-strategic">Design + Dev</span>
+                </div>
+
+                <div class="impl-item">
+                    <span class="impl-effort major">Strategic</span>
+                    <div>
+                        <strong>Full website IA restructure</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin:4px 0 0;">Reorganize the entire "For Business" section around the Platform → Solutions → Resources model recommended above. Requires design, content, and stakeholder alignment across multiple pages.</p>
+                    </div>
+                    <span class="tag tag-strategic">IA Overhaul</span>
+                </div>
+
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer style="background:var(--bg-cool);padding:32px 0;border-top:1px solid var(--border);margin-top:24px;">
+        <div class="container" style="text-align:center;font-size:13px;color:var(--text-muted);">
+            <p style="margin-bottom:4px;">Habit Health — Engagement Module Website Repositioning Strategy</p>
+            <p style="margin-bottom:0;">Confidential — For Internal Review Only</p>
+        </div>
+    </footer>
+
+</body>
+</html>
